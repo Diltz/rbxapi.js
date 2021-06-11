@@ -1,0 +1,23 @@
+{
+  "name": "@diltz/rbxapi",
+  "version": "1.0.3",
+  "description": "Module that let you use roblox API easily",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diltz/rbxapi.git"
+  },
+  "author": "diltz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Diltz/rbxapi/issues"
+  },
+  "homepage": "https://github.com/Diltz/rbxapi#readme"
+}
