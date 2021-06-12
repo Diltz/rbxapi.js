@@ -1,6 +1,6 @@
 {
   "name": "rbxapi.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Module that let you use roblox API easily",
   "main": "index.js",
   "dependencies": {
