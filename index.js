@@ -1,29 +1,29 @@
-/*
+// credits to noblox.js
 
- npm/rbxapi.js
- index.js
- author: diltz (https://github.com/Diltz)
- date: 12.06.21
+const path = require('path')
+const fs = require('fs')
+const include = ['cache']
 
-*/
+const rbxapi = {}
 
-const fs = require("fs")
-const lib_path = "./lib"
-var auth_path = lib_path + "/auth"
-var group_path = lib_path + "/group"
-var user_path = lib_path + "/user"
+function search (dir) {
+  require('fs').readdirSync(dir).forEach(function (file) {
+    const stat = fs.statSync(path.join(dir, file))
+    if (stat.isFile() || include.indexOf(file) !== -1) {
+      rbxapi[file.replace('.js', '')] = require(dir + '/' + file)
+    } else if (stat.isDirectory()) {
+      search(path.join(dir, file))
+    }
+  })
+}
 
-fs.readdirSync(auth_path).forEach((value,index) => {
-    let file = value.split(".")[0]
-    module.exports[file] = require(auth_path + "/" + value)
-})
+search(__dirname + "/lib")
 
-fs.readdirSync(group_path).forEach((value,index) => {
-    let file = value.split(".")[0]
-    module.exports[file] = require(group_path + "/" + value)
-})
-
-fs.readdirSync(user_path).forEach((value,index) => {
-    let file = value.split(".")[0]
-    module.exports[file] = require(user_path + "/" + value)
-})
+for (const name in rbxapi) {
+  const exporter = rbxapi[name]
+  if (Object.prototype.hasOwnProperty.call(exporter, 'func')) {
+    module.exports[name] = rbxapi.wrap.wrapExport(exporter.func, exporter.required || [], exporter.optional || [])
+  } else {
+    module.exports[name] = rbxapi[name]
+  }
+}
