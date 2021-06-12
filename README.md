@@ -4,5 +4,5 @@
 # Documentation
 https://github.com/Diltz/rbxapi.js/wiki
 
-### Module currently has 7 functions, I'll try to update it ofc
+### Module currently has 11 functions, I'll try to update it ofc
 ### This module has been created for researching purposes, if you really need great Roblox API Wrapper, please use noblox.js
