@@ -30,6 +30,8 @@ exports.setGroupShout = exports.setGroupStatus
 exports.getCurrentUser = require(root + "/lib/user/getCurrentUser.js")
 exports.getUser = require(root + "/lib/user/getUser.js")
 exports.getUserStatus = require(root + "/lib/user/getUserStatus.js")
+exports.getUserIdByUsername = require(root + "/lib/user/getUserIdByUsername.js")
+exports.getUsernamebyId = require(root + "/lib/user/getUsernamebyId.js")
 
 // util
 
