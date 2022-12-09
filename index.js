@@ -1,39 +1,23 @@
 /*
 
-index.js
-author: diltz
-date: 12.06.21
-comment: set up all functions
+    @author Diltz
 
 */
 
-const root = __dirname
-var exports = module.exports
+const fs = require("fs")
 
-// auth
+scan = (path) => {
+    let files = fs.readdirSync(path, {encoding: "utf-8"})
+    
+    files.forEach((value, index) => {
+        let executable = require(`${path}/${value}`)
+        let method = value.split(".")[0]
 
-exports.getCSRFtoken = require(root + "/lib/auth/getCSRFtoken.js")
+        module.exports[method] = executable
+    })
+}
 
-// group
-
-exports.getGroup = require(root + "/lib/group/getGroup.js")
-exports.getGroupRoles = require(root + "/lib/group/getGroupRoles.js")
-exports.getRankInGroup = require(root + "/lib/group/getRankInGroup.js")
-exports.getRoleInGroup = require(root + "/lib/group/getRoleInGroup.js")
-exports.isInGroup = require(root + "/lib/group/isInGroup.js")
-exports.setRank = require(root + "/lib/group/setRank.js")
-exports.setGroupStatus = require(root + "/lib/group/setGroupStatus.js")
-exports.setGroupShout = exports.setGroupStatus
-
-// user
-
-exports.getCurrentUser = require(root + "/lib/user/getCurrentUser.js")
-exports.getUser = require(root + "/lib/user/getUser.js")
-exports.getUserStatus = require(root + "/lib/user/getUserStatus.js")
-exports.getUserIdByUsername = require(root + "/lib/user/getUserIdByUsername.js")
-exports.getUsernamebyId = require(root + "/lib/user/getUsernamebyId.js")
-
-// util
-
-exports.util = {}
-exports.util.http = require(root + "/lib/util/http.js")
+scan(__dirname + "/lib/auth")
+scan(__dirname + "/lib/group")
+scan(__dirname + "/lib/user")
+scan(__dirname + "/lib/util")
